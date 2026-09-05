@@ -1,0 +1,2240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GOLDEN HIVE — Luxury Single-Origin Raw Honey Reserves</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* CSS RESET & LUXURY DESIGN SYSTEM */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-dark: #050505;
+      --bg-subtle: #09090b;
+      --bg-card: #0e0e11;
+      --bg-card-glass: rgba(14, 14, 18, 0.75);
+      --text-main: #f5f4ef;
+      --text-muted: #9e9d96;
+      --text-subtle: #63625d;
+      --gold: #d4af37;
+      --gold-light: #ebd68a;
+      --gold-dim: rgba(212, 175, 55, 0.2);
+      --gold-glow: rgba(212, 175, 55, 0.35);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-card: rgba(212, 175, 55, 0.15);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      overflow-x: clip; /* CRITICAL: overflow-x: clip - NOT hidden to preserve sticky */
+      font-weight: 300;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      overflow-x: clip;
+      position: relative;
+    }
+
+    /* SUBTLE LUXURY FILM GRAIN OVERLAY */
+    .grain-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.022;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* RIGHT EDGE PROGRESS BAR */
+    #scroll-progress-container {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 2px;
+      height: 100vh;
+      background: var(--gold-dim);
+      z-index: 1000;
+      pointer-events: none;
+    }
+    #scroll-progress-bar {
+      width: 100%;
+      height: 0%;
+      background: linear-gradient(to bottom, var(--gold), var(--gold-light));
+      box-shadow: 0 0 8px var(--gold-glow);
+      transition: height 0.05s linear;
+    }
+
+    /* LUXURY NAVIGATION */
+    nav.site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.6rem 4rem;
+      z-index: 500;
+      transition: background-color 0.35s ease, padding 0.35s ease, border-bottom 0.35s ease, backdrop-filter 0.35s ease;
+    }
+    nav.site-nav.scrolled {
+      background: rgba(5, 5, 5, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 1.1rem 4rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav-brand {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .nav-brand-diamond {
+      width: 7px;
+      height: 7px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      display: inline-block;
+      box-shadow: 0 0 10px var(--gold-glow);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-weight: 400;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.3s var(--ease-luxury);
+    }
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    .nav-cta-btn {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      text-decoration: none;
+      padding: 0.55rem 1.6rem;
+      border: 1px solid var(--gold-dim);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      background: rgba(212, 175, 55, 0.04);
+    }
+    .nav-cta-btn:hover {
+      border-color: var(--gold);
+      box-shadow: 0 0 20px var(--gold-glow);
+      background: rgba(212, 175, 55, 0.1);
+      transform: translateY(-1px);
+    }
+
+    /* PRELOADER */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      transition: opacity 0.7s var(--ease-luxury), visibility 0.7s var(--ease-luxury);
+    }
+    #loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .loader-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 300;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      color: var(--text-main);
+    }
+    .loader-subtitle {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.38em;
+      color: var(--text-muted);
+      margin-bottom: 2.2rem;
+    }
+    .loader-bar-bg {
+      width: 160px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .loader-bar-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0%;
+      background: var(--gold);
+      box-shadow: 0 0 10px var(--gold-glow);
+      transition: width 0.12s ease-out;
+    }
+
+    /* SECTION 1: HERO CANVAS FRAME SEQUENCE */
+    .hero-track {
+      position: relative;
+      height: 260vh; /* Fast, responsive, natural scroll distance */
+      background: #000;
+    }
+    .hero-sticky {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #hero-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    /* Seamless Bottom Vignette Fade to blend into Section 2 */
+    .hero-bottom-vignette {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.3) 75%, rgba(5,5,5,0.85) 100%),
+                  linear-gradient(to bottom, transparent 80%, var(--bg-dark) 100%);
+      z-index: 2;
+    }
+    .hero-overlay-container {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 3;
+    }
+    .hero-text {
+      position: absolute;
+      color: var(--text-main);
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.5s var(--ease-luxury), transform 0.5s var(--ease-luxury);
+      will-change: opacity, transform;
+      max-width: 88vw;
+      pointer-events: none;
+    }
+    .hero-text.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hero-brand-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+    .hero-title-main {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 7vw, 5.8rem);
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.85);
+    }
+    .hero-subtitle-italic {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+      font-style: italic;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.9);
+    }
+    .hero-varietals {
+      font-family: var(--font-serif);
+      font-size: clamp(1.6rem, 3.8vw, 3.4rem);
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.9);
+    }
+    .hero-corner-quote {
+      position: absolute;
+      top: 13%;
+      left: 6%;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-weight: 400;
+      text-align: left;
+      color: var(--text-muted);
+    }
+    .hero-scroll-cue {
+      position: absolute;
+      bottom: 4.5vh;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.7rem;
+      pointer-events: none;
+      z-index: 5;
+      transition: opacity 0.4s ease;
+    }
+    .hero-scroll-cue span {
+      font-size: 0.62rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 32px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s infinite ease-in-out;
+    }
+    @keyframes scrollPulse {
+      0% { transform: scaleY(0); transform-origin: top; opacity: 0; }
+      50% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+      100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+    }
+
+    /* SECTION 2: STICKY PRODUCT EXPLAINER */
+    #product-explainer {
+      position: relative;
+      display: flex;
+      width: 100%;
+      background: var(--bg-dark);
+      border-top: 1px solid var(--border-subtle);
+    }
+    .explainer-left {
+      width: 50%;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: radial-gradient(circle at center, rgba(32, 26, 14, 0.35) 0%, rgba(5,5,5,0.95) 75%);
+    }
+    .sticky-img-wrapper {
+      position: relative;
+      width: 420px;
+      max-width: 80%;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sticky-halo {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+      border-radius: 50%;
+    }
+    #stickyProductImg {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 45px rgba(0,0,0,0.85));
+      transition: opacity 0.4s var(--ease-luxury), transform 0.4s var(--ease-luxury);
+      z-index: 2;
+    }
+    .explainer-right {
+      width: 50%;
+    }
+    .explainer-panel {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 7rem;
+      position: relative;
+    }
+    .panel-tag-pill {
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      padding: 0.25rem 0.8rem;
+      border: 1px solid var(--gold-dim);
+      border-radius: 20px;
+      background: rgba(212, 175, 55, 0.05);
+      display: inline-block;
+      margin-bottom: 1.2rem;
+    }
+    .panel-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      margin-bottom: 0.8rem;
+    }
+    .panel-quote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.3rem, 1.8vw, 1.65rem);
+      font-style: italic;
+      color: var(--text-main);
+      margin-bottom: 1.4rem;
+      line-height: 1.35;
+    }
+    .panel-desc {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+      max-width: 440px;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .panel-specs {
+      display: flex;
+      gap: 2.5rem;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 1.5rem;
+      max-width: 440px;
+    }
+    .spec-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .spec-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+    }
+    .spec-value {
+      font-size: 0.85rem;
+      color: var(--text-main);
+    }
+
+    /* LIFESTYLE EDITORIAL ACCENT STRIP */
+    .lifestyle-accent-strip {
+      padding: 4.5rem 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--bg-dark);
+      position: relative;
+      z-index: 5;
+    }
+    .lifestyle-accent-card {
+      display: flex;
+      align-items: center;
+      gap: 3.5rem;
+      max-width: 960px;
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      padding: 2.6rem;
+      border-radius: 4px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      transition: border-color 0.35s ease;
+    }
+    .lifestyle-accent-card:hover {
+      border-color: var(--gold-dim);
+    }
+    .lifestyle-accent-card img {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 3px;
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      flex-shrink: 0;
+    }
+    .accent-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 0.6rem;
+    }
+    .lifestyle-accent-card h4 {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      font-weight: 300;
+      color: var(--text-main);
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.04em;
+    }
+    .lifestyle-accent-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    /* SECTION 3: AUTOMATIC CONTINUOUS BOTTLE COLLECTION RAIL */
+    #collection-rail {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background: var(--bg-subtle);
+      padding: 5.5rem 0 6.5rem 0;
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .collection-header-wrap {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 0 2rem;
+    }
+    .collection-brand-pill {
+      font-size: 0.65rem;
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .collection-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      margin-bottom: 0.8rem;
+    }
+    .collection-desc-sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin: 0 auto 1.4rem;
+      line-height: 1.65;
+    }
+    .collection-cue-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+      padding: 0.38rem 1.1rem;
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      background: rgba(14, 14, 18, 0.65);
+    }
+    .cue-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: cuePulse 2s infinite ease-in-out;
+    }
+    @keyframes cuePulse {
+      0%, 100% { opacity: 0.3; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+
+    /* Marquee Track & Edge Fades */
+    .collection-viewport {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: pan-y; /* Preserves smooth vertical scroll while handling horizontal touches */
+      padding: 1.4rem 0;
+    }
+    .collection-viewport:active {
+      cursor: grabbing;
+    }
+    .collection-fade-left, .collection-fade-right {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 120px;
+      z-index: 20;
+      pointer-events: none;
+    }
+    .collection-fade-left {
+      left: 0;
+      background: linear-gradient(to right, var(--bg-subtle) 20%, transparent);
+    }
+    .collection-fade-right {
+      right: 0;
+      background: linear-gradient(to left, var(--bg-subtle) 20%, transparent);
+    }
+    .collection-track {
+      display: flex;
+      gap: 2rem; /* Comfortable, refined spacing */
+      width: max-content;
+      will-change: transform;
+      padding: 0.8rem 0;
+      transition: opacity 0.35s ease;
+    }
+
+    /* Collection Bottle Cards: scaled to ~67% for balanced, sleek proportions */
+    .collection-bottle-card {
+      width: 255px; /* ~67% of original 380px */
+      max-width: 78vw;
+      flex-shrink: 0;
+      background: var(--bg-card-glass);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      padding: 2.1rem 1.4rem 1.6rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.35s var(--ease-luxury),
+                  border-color 0.35s ease,
+                  box-shadow 0.35s ease,
+                  opacity 0.35s ease,
+                  filter 0.35s ease;
+    }
+
+    /* Dimming other cards when a card is hovered or active */
+    .collection-track.has-active .collection-bottle-card:not(.active):not(:hover) {
+      opacity: 0.48;
+      filter: saturate(0.8);
+      transform: scale(0.96);
+    }
+
+    /* Active & Hover Highlight */
+    .collection-bottle-card:hover,
+    .collection-bottle-card.active {
+      opacity: 1 !important;
+      filter: saturate(1.08) brightness(1.06) !important;
+      transform: translateY(-8px) scale(1.025) !important;
+      border-color: var(--gold);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.85), 0 0 28px rgba(212, 175, 55, 0.3);
+    }
+
+    /* Active Highlight Indicator Badge */
+    .bottle-active-badge {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      font-size: 0.52rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      opacity: 0;
+      transform: translateY(-3px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.18rem 0.5rem;
+      border: 1px solid var(--gold-dim);
+      border-radius: 10px;
+      background: rgba(212, 175, 55, 0.08);
+    }
+    .collection-bottle-card.active .bottle-active-badge {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .bottle-tag {
+      font-size: 0.56rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+    .bottle-img-wrap {
+      width: 100%;
+      height: 195px; /* ~67% of original 290px */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+    .bottle-img-wrap img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 24px rgba(0,0,0,0.9));
+      transition: transform 0.4s var(--ease-luxury), filter 0.4s ease;
+    }
+    .collection-bottle-card:hover .bottle-img-wrap img,
+    .collection-bottle-card.active .bottle-img-wrap img {
+      transform: scale(1.06);
+      filter: drop-shadow(0 16px 32px rgba(0,0,0,0.95)) drop-shadow(0 0 20px rgba(212, 175, 55, 0.22));
+    }
+    .bottle-name {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      font-weight: 300;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      margin-bottom: 0.4rem;
+      transition: color 0.3s ease;
+    }
+    .collection-bottle-card.active .bottle-name,
+    .collection-bottle-card:hover .bottle-name {
+      color: #ffffff;
+      text-shadow: 0 0 14px rgba(212, 175, 55, 0.35);
+    }
+    .bottle-desc {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 1.2rem;
+      min-height: 38px;
+      transition: color 0.3s ease;
+    }
+    .collection-bottle-card.active .bottle-desc,
+    .collection-bottle-card:hover .bottle-desc {
+      color: var(--text-main);
+    }
+    .bottle-meta-row {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--border-subtle);
+      margin-bottom: 1.1rem;
+      font-size: 0.60rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+    }
+    .collection-bottle-card .btn-gold {
+      display: inline-block;
+      padding: 0.55rem 1.4rem;
+      background: rgba(212, 175, 55, 0.04);
+      color: var(--text-main);
+      border: 1px solid var(--gold);
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+    .collection-bottle-card .btn-gold:hover {
+      background: var(--gold);
+      color: #000;
+      box-shadow: 0 0 16px var(--gold-glow);
+      transform: translateY(-2px);
+    }
+
+    /* SECTION 4: STACKING RITUAL CARDS */
+    #ritual-cards-section {
+      position: relative;
+      background: var(--bg-dark);
+      padding: 8rem 2rem 14rem 2rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .section-header-centered {
+      text-align: center;
+      margin-bottom: 5.5rem;
+    }
+    .section-subtitle {
+      font-size: 0.72rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 4.8vw, 4rem);
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-main);
+    }
+    .cards-stack-container {
+      max-width: 1040px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .ritual-card {
+      position: sticky;
+      top: 15vh;
+      height: 68vh;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 8vh;
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      background: #09090b;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.9);
+      display: flex;
+      align-items: flex-end;
+    }
+    .card-video-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+    .card-dark-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(5,5,5,0.95) 20%, rgba(5,5,5,0.4) 65%, rgba(5,5,5,0.1) 100%);
+      z-index: 2;
+    }
+    .card-content {
+      position: relative;
+      z-index: 3;
+      padding: 3.5rem;
+      width: 100%;
+    }
+    .card-num {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      color: var(--gold-light);
+      letter-spacing: 0.25em;
+      margin-bottom: 0.4rem;
+    }
+    .card-action {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4.2vw, 3.2rem);
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      margin-bottom: 0.6rem;
+    }
+    .card-quote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.15rem, 1.7vw, 1.45rem);
+      font-style: italic;
+      color: var(--text-main);
+      max-width: 600px;
+    }
+
+    /* SECTION 5: PARALLAX STATEMENT */
+    #parallax-statement {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .parallax-bg-img {
+      position: absolute;
+      top: -20%;
+      left: 0;
+      width: 100%;
+      height: 140%;
+      object-fit: cover;
+      will-change: transform;
+      filter: brightness(0.6);
+    }
+    .statement-overlay-gradient {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(5,5,5,0.25) 0%, rgba(5,5,5,0.85) 100%);
+      z-index: 1;
+    }
+    .statement-content {
+      position: relative;
+      z-index: 2;
+      padding: 2.5rem;
+      max-width: 900px;
+    }
+    .statement-quote {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.25;
+      color: var(--text-main);
+      margin-bottom: 2.2rem;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.85);
+    }
+    .statement-tagline {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      font-weight: 400;
+      border-top: 1px solid var(--gold);
+      display: inline-block;
+      padding-top: 1.2rem;
+    }
+
+    /* SECTION 6: REVERSE COLUMNS */
+    #reverse-columns {
+      position: relative;
+      padding: 10rem 4rem;
+      background: var(--bg-dark);
+      overflow: hidden;
+    }
+    .reverse-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 88vh;
+      position: relative;
+    }
+    .reverse-col {
+      height: 100%;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.75);
+      border: 1px solid var(--border-subtle);
+    }
+    .reverse-col img {
+      width: 100%;
+      height: 125%;
+      object-fit: cover;
+      position: absolute;
+      top: -12%;
+      left: 0;
+      will-change: transform;
+      filter: brightness(0.75);
+    }
+    .reverse-col::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .reverse-overlay-title {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .reverse-title-text {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      font-style: italic;
+      color: var(--text-main);
+      text-shadow: 0 4px 25px rgba(0,0,0,0.95);
+      text-align: center;
+      padding: 1.6rem 2.8rem;
+      background: rgba(5,5,5,0.72);
+      border: 1px solid var(--gold-dim);
+      border-radius: 3px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    }
+
+    /* SECTION 7: PRODUCT COLLECTION GRID */
+    #collection-grid {
+      padding: 10rem 4rem;
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border-subtle);
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      max-width: 1240px;
+      margin: 4rem auto 0;
+    }
+    .product-grid-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      padding: 3rem 2rem;
+      text-align: center;
+      transition: transform 0.4s var(--ease-luxury), border-color 0.35s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .product-grid-card:hover {
+      transform: translateY(-12px);
+      border-color: var(--gold);
+      box-shadow: 0 20px 45px var(--gold-glow);
+    }
+    .grid-card-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 1.4rem;
+    }
+    .grid-card-img-wrap {
+      width: 100%;
+      height: 270px;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .grid-card-img-wrap img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 30px rgba(0,0,0,0.85));
+      transition: transform 0.4s var(--ease-luxury);
+    }
+    .product-grid-card:hover .grid-card-img-wrap img {
+      transform: scale(1.05);
+    }
+    .grid-card-title {
+      font-family: var(--font-serif);
+      font-size: 2.1rem;
+      font-weight: 300;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      margin-bottom: 0.8rem;
+    }
+    .grid-card-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      min-height: 48px;
+    }
+    .grid-card-meta {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding-top: 1.4rem;
+      border-top: 1px solid var(--border-subtle);
+      margin-bottom: 1.8rem;
+      font-size: 0.72rem;
+      color: var(--text-subtle);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* SECTION 8: NEWSLETTER */
+    #newsletter {
+      position: relative;
+      padding: 12rem 2rem;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .newsletter-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.24);
+    }
+    .newsletter-content {
+      position: relative;
+      z-index: 2;
+      max-width: 660px;
+      width: 100%;
+    }
+    .newsletter-badge {
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+    .newsletter-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 5.2vw, 4.2rem);
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+    }
+    .newsletter-subtitle {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      margin-bottom: 3rem;
+      line-height: 1.7;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 0.9rem;
+      justify-content: center;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .newsletter-input {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      background: rgba(10, 10, 12, 0.75);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 2px;
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      outline: none;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(8px);
+    }
+    .newsletter-input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 16px var(--gold-glow);
+    }
+    .newsletter-input::placeholder {
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* SECTION 9: FOOTER */
+    footer.site-footer {
+      padding: 6rem 3rem 4rem 3rem;
+      background: #020202;
+      border-top: 1px solid var(--border-subtle);
+      text-align: center;
+    }
+    .footer-brand {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 300;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+    }
+    .footer-tagline {
+      font-size: 0.74rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+      margin-bottom: 3rem;
+    }
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      list-style: none;
+      margin-bottom: 3.5rem;
+    }
+    .footer-nav a {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .footer-nav a:hover {
+      color: var(--text-main);
+    }
+    .footer-copy {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.25);
+      text-transform: uppercase;
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 1024px) {
+      nav.site-nav {
+        padding: 1.3rem 2rem;
+      }
+      .nav-links {
+        display: none;
+      }
+      .explainer-panel {
+        padding: 4rem 3rem;
+      }
+    }
+
+    @media (max-width: 860px) {
+      #product-explainer {
+        flex-direction: column;
+      }
+      .explainer-left {
+        width: 100%;
+        height: 46vh;
+        top: 0;
+      }
+      .explainer-right {
+        width: 100%;
+      }
+      .explainer-panel {
+        min-height: 75vh;
+        padding: 5rem 2rem;
+      }
+      .grid-container, .reverse-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+      .reverse-col {
+        height: 360px;
+      }
+      .reverse-col img {
+        height: 100%;
+        top: 0;
+      }
+      .collection-bottle-card {
+        width: 320px;
+        padding: 2.2rem 1.6rem;
+      }
+      .bottle-img-wrap {
+        height: 220px;
+      }
+      .lifestyle-accent-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+        padding: 2.2rem 1.6rem;
+      }
+      .newsletter-form {
+        flex-direction: column;
+      }
+      .footer-nav {
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Subtle Grain Texture -->
+  <div class="grain-overlay"></div>
+
+  <!-- Global Scroll Progress Indicator -->
+  <div id="scroll-progress-container">
+    <div id="scroll-progress-bar"></div>
+  </div>
+
+  <!-- Luxury Preloader -->
+  <div id="loader">
+    <div class="loader-title">GOLDEN HIVE</div>
+    <div class="loader-subtitle">Single Origin Nectar Reserves</div>
+    <div class="loader-bar-bg">
+      <div id="loader-progress" class="loader-bar-fill"></div>
+    </div>
+  </div>
+
+  <!-- Minimalist Luxury Navigation -->
+  <nav class="site-nav" id="siteNav">
+    <a href="#hero-track" class="nav-brand">
+      <span class="nav-brand-diamond"></span>
+      GOLDEN HIVE
+    </a>
+    <ul class="nav-links">
+      <li><a href="#hero-track">The Ritual</a></li>
+      <li><a href="#product-explainer">Single Varietals</a></li>
+      <li><a href="#collection-rail">Collection</a></li>
+      <li><a href="#ritual-cards-section">The Drop</a></li>
+    </ul>
+    <a href="#collection-grid" class="nav-cta-btn">Acquire Reserve</a>
+  </nav>
+
+  <!-- SECTION 1: HERO CANVAS FRAME SEQUENCE -->
+  <section class="hero-track" id="hero-track">
+    <div class="hero-sticky">
+      <canvas id="hero-canvas"></canvas>
+      <div class="hero-bottom-vignette"></div>
+
+      <!-- Scroll Text Overlays (Positioned away from center honey action) -->
+      <div class="hero-overlay-container">
+        <!-- Progress 0.12 - 0.24: GOLDEN HIVE -->
+        <div class="hero-text" id="overlay-1">
+          <span class="hero-brand-tag">SINGLE ORIGIN NECTAR</span>
+          <h1 class="hero-title-main">GOLDEN HIVE</h1>
+        </div>
+
+        <!-- Progress 0.34 - 0.44: Raw from remote hill sanctuaries. -->
+        <div class="hero-text" id="overlay-2">
+          <p class="hero-subtitle-italic">Raw from remote hill sanctuaries.</p>
+        </div>
+
+        <!-- Progress 0.54 - 0.66: LITCHI · MUSTARD · WILD FOREST -->
+        <div class="hero-text" id="overlay-3">
+          <div class="hero-varietals">LITCHI &nbsp;·&nbsp; MUSTARD &nbsp;·&nbsp; WILD FOREST</div>
+        </div>
+
+        <!-- Progress 0.72 - 0.82: One drop. A thousand blossoms. -->
+        <div class="hero-text hero-corner-quote" id="overlay-4">
+          One drop. A thousand blossoms.
+        </div>
+      </div>
+
+      <!-- Scroll Cue Indicator -->
+      <div class="hero-scroll-cue" id="heroScrollCue">
+        <span>Scroll to Explore</span>
+        <div class="hero-scroll-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lifestyle Accent 1 -->
+  <div class="lifestyle-accent-strip">
+    <div class="lifestyle-accent-card">
+      <img src="images/lifestyle/lifestyle-dipper-drizzle.png" alt="Pure Golden Drizzle">
+      <div class="accent-text">
+        <div class="accent-tag">Harvester's Craft</div>
+        <h4>The Golden Ritual</h4>
+        <p>Pure raw honey harvested at high altitude in the morning mist of remote hill preserves. Unfiltered, unpasteurized, and untouched by industrial heat.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: STICKY PRODUCT EXPLAINER -->
+  <section id="product-explainer">
+    <div class="explainer-left">
+      <div class="sticky-img-wrapper">
+        <div class="sticky-halo"></div>
+        <img id="stickyProductImg" src="images/product/assam-honey-litchi.png?v=goldenhive" alt="Golden Hive Reserve Jar">
+      </div>
+    </div>
+    <div class="explainer-right">
+      <!-- Panel 1: Litchi -->
+      <div class="explainer-panel" data-product="litchi" data-img="images/product/assam-honey-litchi.png?v=goldenhive">
+        <span class="panel-tag-pill">Varietal 01</span>
+        <h2 class="panel-title">LITCHI</h2>
+        <div class="panel-quote">"Light, floral, morning-bright."</div>
+        <p class="panel-desc">Litchi-blossom honey, harvested in early spring when orchards burst into delicate white blossoms. Pale golden in color with bright citrus notes.</p>
+        <div class="panel-specs">
+          <div class="spec-item">
+            <span class="spec-label">Harvest</span>
+            <span class="spec-value">March / Early Spring</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Profile</span>
+            <span class="spec-value">Luminous & Floral</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 2: Mustard -->
+      <div class="explainer-panel" data-product="mustard" data-img="images/product/assam-honey-mustard.png?v=goldenhive">
+        <span class="panel-tag-pill">Varietal 02</span>
+        <h2 class="panel-title">MUSTARD</h2>
+        <div class="panel-quote">"Deep, warm, quietly bold."</div>
+        <p class="panel-desc">Mustard-blossom honey, the classic winter harvest. Rich amber viscosity with earthy warmth and a velvety, resonant finish.</p>
+        <div class="panel-specs">
+          <div class="spec-item">
+            <span class="spec-label">Harvest</span>
+            <span class="spec-value">December / Mid-Winter</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Profile</span>
+            <span class="spec-value">Warm & Resonant</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 3: Wild Forest -->
+      <div class="explainer-panel" data-product="wild" data-img="images/product/assam-honey-wild.png?v=goldenhive">
+        <span class="panel-tag-pill">Varietal 03</span>
+        <h2 class="panel-title">WILD FOREST</h2>
+        <div class="panel-quote">"Untamed. Harvested by hand."</div>
+        <p class="panel-desc">Dark wild-forest honey, foraged from ancient cliff hives in deep hill preserves. Dark mahogany depth with smoky undertones.</p>
+        <div class="panel-specs">
+          <div class="spec-item">
+            <span class="spec-label">Harvest</span>
+            <span class="spec-value">Annual Forage Only</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Profile</span>
+            <span class="spec-value">Dark & Complex</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lifestyle Accent 2 -->
+  <div class="lifestyle-accent-strip">
+    <div class="lifestyle-accent-card">
+      <img src="images/lifestyle/lifestyle-honeycomb-macro.png" alt="Living Geometry Honeycomb">
+      <div class="accent-text">
+        <div class="accent-tag">Sub-Himalayan Flora</div>
+        <h4>Living Geometry</h4>
+        <p>Every hexagon is built cell by cell by native honeybees foraging across undisturbed hill forests and remote wild flora.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: AUTOMATIC CONTINUOUS BOTTLE COLLECTION RAIL -->
+  <section id="collection-rail">
+    <div class="collection-header-wrap">
+      <div class="collection-brand-pill">
+        <span class="cue-dot"></span>
+        <span>GOLDEN HIVE · SINGLE ORIGIN NECTAR</span>
+      </div>
+      <h2 class="collection-heading">THE COLLECTION</h2>
+      <p class="collection-desc-sub">Three rare terroirs. Unpasteurized, single-varietal raw reserves harvested by hand from remote hill preserves.</p>
+      <div class="collection-cue-badge">
+        <span>Auto-Gliding · Tap or Hover to Inspect · Drag to Explore</span>
+      </div>
+    </div>
+
+    <div class="collection-viewport" id="collectionViewport">
+      <div class="collection-fade-left"></div>
+      <div class="collection-fade-right"></div>
+      
+      <!-- Continuous Track with 3 cloned sets of the 3 bottles for seamless infinite looping -->
+      <div class="collection-track" id="collectionTrack">
+        
+        <!-- SET 1 -->
+        <div class="collection-bottle-card" data-varietal="litchi">
+          <div class="bottle-active-badge"><span>●</span> SELECTED</div>
+          <span class="bottle-tag">GOLDEN HIVE · SPRING HARVEST</span>
+          <div class="bottle-img-wrap">
+            <img src="images/product/assam-honey-litchi.png?v=goldenhive" alt="Golden Hive Litchi Blossom Raw Honey">
+          </div>
+          <h3 class="bottle-name">LITCHI</h3>
+          <p class="bottle-desc">Light, floral, morning-bright nectar with delicate citrus undertones.</p>
+          <div class="bottle-meta-row">
+            <span>500g Glass</span>
+            <span>Single Origin</span>
+          </div>
+          <a href="#collection-grid" class="btn-gold">Acquire Bottle</a>
+        </div>
+
+        <div class="collection-bottle-card" data-varietal="mustard">
+          <div class="bottle-active-badge"><span>●</span> SELECTED</div>
+          <span class="bottle-tag">GOLDEN HIVE · WINTER HARVEST</span>
+          <div class="bottle-img-wrap">
+            <img src="images/product/assam-honey-mustard.png?v=goldenhive" alt="Golden Hive Mustard Blossom Raw Honey">
+          </div>
+          <h3 class="bottle-name">MUSTARD</h3>
+          <p class="bottle-desc">Deep golden warmth with caramelized, soothing velvety viscosity.</p>
+          <div class="bottle-meta-row">
+            <span>500g Glass</span>
+            <span>Single Origin</span>
+          </div>
+          <a href="#collection-grid" class="btn-gold">Acquire Bottle</a>
+        </div>
+
+        <div class="collection-bottle-card" data-varietal="wild">
+          <div class="bottle-active-badge"><span>●</span> SELECTED</div>
+          <span class="bottle-tag">GOLDEN HIVE · RARE CANOPY</span>
+          <div class="bottle-img-wrap">
+            <img src="images/product/assam-honey-wild.png?v=goldenhive" alt="Golden Hive Wild Forest Reserve">
+          </div>
+          <h3 class="bottle-name">WILD FOREST</h3>
+          <p class="bottle-desc">Dark mahogany cliff nectar rich in complex smoky forest polyphenols.</p>
+          <div class="bottle-meta-row">
+            <span>500g Glass</span>
+            <span>Cliff Foraged</span>
+          </div>
+          <a href="#collection-grid" class="btn-gold">Acquire Bottle</a>
+        </div>
+
+        <!-- SET 2 -->
+        <div class="collection-bottle-card" data-varietal="litchi">
+          <div class="bottle-active-badge"><span>●</span> SELECTED</div>
+          <span class="bottle-tag">GOLDEN HIVE · SPRING HARVEST</span>
+          <div class="bottle-img-wrap">
+            <img src="images/product/assam-honey-litchi.png?v=goldenhive" alt="Golden Hive Litchi Blossom Raw Honey">
+          </div>
+          <h3 class="bottle-name">LITCHI</h3>
+          <p class="bottle-desc">Light, floral, morning-bright nectar with delicate citrus undertones.</p>
+          <div class="bottle-meta-row">
+            <span>500g Glass</span>
+            <span>Single Origin</span>
+          </div>
+          <a href="#collection-grid" class="btn-gold">Acquire Bottle</a>
+        </div>
+
+        <div class="collection-bottle-card" data-varietal="mustard">
+          <div class="bottle-active-badge"><span>●</span> SELECTED</div>
+          <span class="bottle-tag">GOLDEN HIVE · WINTER HARVEST</span>
+          <div class="bottle-img-wrap">
+            <img src="images/product/assam-honey-mustard.png?v=goldenhive" alt="Golden Hive Mustard Blossom Raw Honey">
+          </div>
+          <h3 class="bottle-name">MUSTARD</h3>
+          <p class="bottle-desc">Deep golden warmth with caramelized, soothing velvety viscosity.</p>
+          <div class="bottle-meta-row">
+            <span>500g Glass</span>
+            <span>Single Origin</span>
+          </div>
+          <a href="#collection-grid" class="btn-gold">Acquire Bottle</a>
+        </div>
+
+        <div class="collection-bottle-card" data-varietal="wild">
+          <div class="bottle-active-badge"><span>●</span> SELECTED</div>
+          <span class="bottle-tag">GOLDEN HIVE · RARE CANOPY</span>
+          <div class="bottle-img-wrap">
+            <img src="images/product/assam-honey-wild.png?v=goldenhive" alt="Golden Hive Wild Forest Reserve">
+          </div>
+          <h3 class="bottle-name">WILD FOREST</h3>
+          <p class="bottle-desc">Dark mahogany cliff nectar rich in complex smoky forest polyphenols.</p>
+          <div class="bottle-meta-row">
+            <span>500g Glass</span>
+            <span>Cliff Foraged</span>
+          </div>
+          <a href="#collection-grid" class="btn-gold">Acquire Bottle</a>
+        </div>
+
+        <!-- SET 3 -->
+        <div class="collection-bottle-card" data-varietal="litchi">
+          <div class="bottle-active-badge"><span>●</span> SELECTED</div>
+          <span class="bottle-tag">GOLDEN HIVE · SPRING HARVEST</span>
+          <div class="bottle-img-wrap">
+            <img src="images/product/assam-honey-litchi.png?v=goldenhive" alt="Golden Hive Litchi Blossom Raw Honey">
+          </div>
+          <h3 class="bottle-name">LITCHI</h3>
+          <p class="bottle-desc">Light, floral, morning-bright nectar with delicate citrus undertones.</p>
+          <div class="bottle-meta-row">
+            <span>500g Glass</span>
+            <span>Single Origin</span>
+          </div>
+          <a href="#collection-grid" class="btn-gold">Acquire Bottle</a>
+        </div>
+
+        <div class="collection-bottle-card" data-varietal="mustard">
+          <div class="bottle-active-badge"><span>●</span> SELECTED</div>
+          <span class="bottle-tag">GOLDEN HIVE · WINTER HARVEST</span>
+          <div class="bottle-img-wrap">
+            <img src="images/product/assam-honey-mustard.png?v=goldenhive" alt="Golden Hive Mustard Blossom Raw Honey">
+          </div>
+          <h3 class="bottle-name">MUSTARD</h3>
+          <p class="bottle-desc">Deep golden warmth with caramelized, soothing velvety viscosity.</p>
+          <div class="bottle-meta-row">
+            <span>500g Glass</span>
+            <span>Single Origin</span>
+          </div>
+          <a href="#collection-grid" class="btn-gold">Acquire Bottle</a>
+        </div>
+
+        <div class="collection-bottle-card" data-varietal="wild">
+          <div class="bottle-active-badge"><span>●</span> SELECTED</div>
+          <span class="bottle-tag">GOLDEN HIVE · RARE CANOPY</span>
+          <div class="bottle-img-wrap">
+            <img src="images/product/assam-honey-wild.png?v=goldenhive" alt="Golden Hive Wild Forest Reserve">
+          </div>
+          <h3 class="bottle-name">WILD FOREST</h3>
+          <p class="bottle-desc">Dark mahogany cliff nectar rich in complex smoky forest polyphenols.</p>
+          <div class="bottle-meta-row">
+            <span>500g Glass</span>
+            <span>Cliff Foraged</span>
+          </div>
+          <a href="#collection-grid" class="btn-gold">Acquire Bottle</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: STACKING RITUAL CARDS -->
+  <section id="ritual-cards-section">
+    <div class="section-header-centered">
+      <div class="section-subtitle">THE THREE RITUALS</div>
+      <h2 class="section-title">THE ART OF THE DROP</h2>
+    </div>
+
+    <div class="cards-stack-container">
+      <!-- Card 01: DRIZZLE -->
+      <div class="ritual-card" style="z-index: 10;">
+        <video class="card-video-bg" autoplay muted loop playsinline src="videos/card-drizzle.mp4"></video>
+        <div class="card-dark-gradient"></div>
+        <div class="card-content">
+          <div class="card-num">01</div>
+          <div class="card-action">DRIZZLE</div>
+          <div class="card-quote">"A ribbon of gold, straight from the comb."</div>
+        </div>
+      </div>
+
+      <!-- Card 02: DIP -->
+      <div class="ritual-card" style="z-index: 20;">
+        <video class="card-video-bg" autoplay muted loop playsinline src="videos/card-dip.mp4"></video>
+        <div class="card-dark-gradient"></div>
+        <div class="card-content">
+          <div class="card-num">02</div>
+          <div class="card-action">DIP</div>
+          <div class="card-quote">"Slow, unhurried, exactly as it should be."</div>
+        </div>
+      </div>
+
+      <!-- Card 03: STIR -->
+      <div class="ritual-card" style="z-index: 30;">
+        <video class="card-video-bg" autoplay muted loop playsinline src="videos/card-stir.mp4"></video>
+        <div class="card-dark-gradient"></div>
+        <div class="card-content">
+          <div class="card-num">03</div>
+          <div class="card-action">STIR</div>
+          <div class="card-quote">"Where the ritual settles into stillness."</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: PARALLAX STATEMENT -->
+  <section id="parallax-statement">
+    <img class="parallax-bg-img" id="parallaxBg" src="images/backgrounds/bg-forest-twilight.png" alt="Twilight Forest Sanctuary">
+    <div class="statement-overlay-gradient"></div>
+    <div class="statement-content">
+      <blockquote class="statement-quote">
+        "Nature's own<br>sweetness, untouched."
+      </blockquote>
+      <div class="statement-tagline">GOLDEN HIVE — Since the first harvest.</div>
+    </div>
+  </section>
+
+  <!-- Lifestyle Accent 3 -->
+  <div class="lifestyle-accent-strip">
+    <div class="lifestyle-accent-card">
+      <img src="images/lifestyle/lifestyle-honey-toast.png" alt="Gastronomy Honey Serving">
+      <div class="accent-text">
+        <div class="accent-tag">Gastronomy</div>
+        <h4>Morning Table</h4>
+        <p>A single spoonful elevates raw sourdough, warm mountain teas, and freshly churned dairy with clean, natural sweetness.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: REVERSE COLUMNS -->
+  <section id="reverse-columns">
+    <div class="reverse-grid">
+      <div class="reverse-col">
+        <img class="rev-col-1" src="images/backgrounds/bg-apiary-golden-hour.png" alt="Apiary Sanctuary Column 1">
+      </div>
+      <div class="reverse-col">
+        <img class="rev-col-2" src="images/backgrounds/bg-apiary-golden-hour.png" alt="Apiary Sanctuary Column 2">
+      </div>
+      <div class="reverse-col">
+        <img class="rev-col-3" src="images/backgrounds/bg-apiary-golden-hour.png" alt="Apiary Sanctuary Column 3">
+      </div>
+      <div class="reverse-overlay-title">
+        <div class="reverse-title-text">"Gathered from the wild."</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: PRODUCT COLLECTION GRID -->
+  <section id="collection-grid">
+    <div class="section-header-centered">
+      <div class="section-subtitle">DISCOVER THE HARVEST</div>
+      <h2 class="section-title">THE TRIO</h2>
+    </div>
+
+    <div class="grid-container">
+      <!-- Card 1: Litchi -->
+      <div class="product-grid-card">
+        <span class="grid-card-tag">Spring Reserve</span>
+        <div class="grid-card-img-wrap">
+          <img src="images/product/assam-honey-litchi.png?v=goldenhive" alt="Litchi Blossom Raw Honey">
+        </div>
+        <h3 class="grid-card-title">LITCHI</h3>
+        <p class="grid-card-desc">Light, floral spring nectar with crisp floral notes and an ethereal golden clarity.</p>
+        <div class="grid-card-meta">
+          <span>500g · Glass</span>
+          <span>100% Raw</span>
+        </div>
+        <button class="btn-gold" onclick="alert('Litchi Blossom Reserve added to collection.')">Acquire Jar</button>
+      </div>
+
+      <!-- Card 2: Mustard -->
+      <div class="product-grid-card">
+        <span class="grid-card-tag">Winter Reserve</span>
+        <div class="grid-card-img-wrap">
+          <img src="images/product/assam-honey-mustard.png?v=goldenhive" alt="Mustard Blossom Raw Honey">
+        </div>
+        <h3 class="grid-card-title">MUSTARD</h3>
+        <p class="grid-card-desc">Warm, rich winter harvest with a soothing aroma and thick caramelized texture.</p>
+        <div class="grid-card-meta">
+          <span>500g · Glass</span>
+          <span>100% Raw</span>
+        </div>
+        <button class="btn-gold" onclick="alert('Mustard Blossom Reserve added to collection.')">Acquire Jar</button>
+      </div>
+
+      <!-- Card 3: Wild Forest -->
+      <div class="product-grid-card">
+        <span class="grid-card-tag">Rare Canopy</span>
+        <div class="grid-card-img-wrap">
+          <img src="images/product/assam-honey-wild.png?v=goldenhive" alt="Wild Forest Cliff Raw Honey">
+        </div>
+        <h3 class="grid-card-title">WILD FOREST</h3>
+        <p class="grid-card-desc">Dark mahogany foraged honey rich in forest polyphenols with smoky wild depth.</p>
+        <div class="grid-card-meta">
+          <span>500g · Glass</span>
+          <span>Cliff Foraged</span>
+        </div>
+        <button class="btn-gold" onclick="alert('Wild Forest Reserve added to collection.')">Acquire Jar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: NEWSLETTER -->
+  <section id="newsletter">
+    <div class="newsletter-bg" style="background-image: url('images/backgrounds/bg-apiary-golden-hour.png');"></div>
+    <div class="newsletter-content">
+      <span class="newsletter-badge">Exclusive Allocation</span>
+      <h2 class="newsletter-title">Join the ritual.</h2>
+      <p class="newsletter-subtitle">Receive private invitations for limited seasonal micro-harvests and private apiary reserves.</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); alert('You are now registered for Golden Hive ritual allocations.');">
+        <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+        <button type="submit" class="btn-gold">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- SECTION 9: FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-brand">GOLDEN HIVE</div>
+    <p class="footer-tagline">Single Origin Nectar Reserves · Hand-Harvested in High Hill Sanctuaries</p>
+    <ul class="footer-nav">
+      <li><a href="#hero-track">The Ritual</a></li>
+      <li><a href="#product-explainer">Single Varietals</a></li>
+      <li><a href="#collection-rail">Collection</a></li>
+      <li><a href="#collection-grid">Acquire</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 GOLDEN HIVE CO. ALL RIGHTS RESERVED. BRED IN THE WILD.</div>
+  </footer>
+
+  <!-- GSAP, ScrollTrigger & Lenis Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <script>
+    (function() {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // --- 1. LIGHT, RESPONSIVE SMOOTH SCROLLING (LENIS) ---
+      const lenis = new Lenis({
+        duration: 0.65, // Snappy response without heavy inertia
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1.15, // Immediate feedback on mouse-wheel
+        touchMultiplier: 1.3,
+      });
+
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+
+      // Smooth Anchor Navigation
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href');
+          if (targetId && targetId !== '#') {
+            const targetEl = document.querySelector(targetId);
+            if (targetEl) {
+              e.preventDefault();
+              lenis.scrollTo(targetEl, { offset: 0, duration: 1.0 });
+            }
+          }
+        });
+      });
+
+      // Navigation Header Scrolled State
+      const siteNav = document.getElementById('siteNav');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 60) {
+          siteNav.classList.add('scrolled');
+        } else {
+          siteNav.classList.remove('scrolled');
+        }
+      }, { passive: true });
+
+      // --- 2. HERO CANVAS SEQUENCE & ROLLING CACHE ENGINE ---
+      const TOTAL_FRAMES = 581;
+      const INITIAL_PRELOAD_COUNT = 40;
+      const CACHE_WINDOW = 65;
+      const PREFETCH_AHEAD = 18;
+
+      const frames = new Map(); // Variable named 'frames' per PDF rule
+      let currentFrameIndex = 1;
+      let targetFrameIndex = 1;
+      let lastScrollProgress = 0;
+      let scrollDirection = 1;
+      let isHeroActive = true;
+
+      const canvas = document.getElementById('hero-canvas');
+      const ctx = canvas.getContext('2d');
+      const heroTrack = document.getElementById('hero-track');
+      const loader = document.getElementById('loader');
+      const loaderBar = document.getElementById('loader-progress');
+      const scrollProgressBar = document.getElementById('scroll-progress-bar');
+      const heroScrollCue = document.getElementById('heroScrollCue');
+
+      function formatFramePath(index) {
+        const padded = String(index).padStart(4, '0');
+        return `frames/frame_${padded}.jpg`;
+      }
+
+      function loadFrame(index) {
+        if (index < 1 || index > TOTAL_FRAMES) return Promise.resolve(null);
+        if (frames.has(index)) return Promise.resolve(frames.get(index));
+
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.onload = () => {
+            frames.set(index, img);
+            resolve(img);
+          };
+          img.onerror = () => resolve(null);
+          img.src = formatFramePath(index);
+        });
+      }
+
+      function updateRollingCache(centerIndex, direction) {
+        const minKeep = Math.max(1, centerIndex - CACHE_WINDOW);
+        const maxKeep = Math.min(TOTAL_FRAMES, centerIndex + CACHE_WINDOW);
+
+        if (direction > 0) {
+          for (let i = centerIndex; i <= Math.min(TOTAL_FRAMES, centerIndex + PREFETCH_AHEAD); i++) {
+            if (!frames.has(i)) loadFrame(i);
+          }
+        } else {
+          for (let i = centerIndex; i >= Math.max(1, centerIndex - PREFETCH_AHEAD); i--) {
+            if (!frames.has(i)) loadFrame(i);
+          }
+        }
+
+        for (let i = minKeep; i <= maxKeep; i += 2) {
+          if (!frames.has(i)) loadFrame(i);
+        }
+
+        for (const key of frames.keys()) {
+          if (key < minKeep - 15 || key > maxKeep + 15) {
+            frames.delete(key);
+          }
+        }
+      }
+
+      function drawFrame(index) {
+        let img = frames.get(index);
+        if (!img) {
+          let closest = null;
+          let minDiff = Infinity;
+          for (const key of frames.keys()) {
+            const diff = Math.abs(key - index);
+            if (diff < minDiff) {
+              minDiff = diff;
+              closest = frames.get(key);
+            }
+          }
+          img = closest;
+        }
+
+        if (!img || !img.complete) return;
+
+        const w = canvas.width;
+        const h = canvas.height;
+        const imgW = img.naturalWidth || img.width;
+        const imgH = img.naturalHeight || img.height;
+
+        const scale = Math.max(w / imgW, h / imgH);
+        const nw = imgW * scale;
+        const nh = imgH * scale;
+        const nx = (w - nw) / 2;
+        const ny = (h - nh) / 2;
+
+        ctx.clearRect(0, 0, w, h);
+        ctx.drawImage(img, nx, ny, nw, nh);
+      }
+
+      function resizeCanvas() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = window.innerWidth * dpr;
+        canvas.height = window.innerHeight * dpr;
+        drawFrame(currentFrameIndex);
+      }
+      window.addEventListener('resize', resizeCanvas);
+
+      // Overlays at exact intervals
+      const overlay1 = document.getElementById('overlay-1'); // 0.12 - 0.24
+      const overlay2 = document.getElementById('overlay-2'); // 0.34 - 0.44
+      const overlay3 = document.getElementById('overlay-3'); // 0.54 - 0.66
+      const overlay4 = document.getElementById('overlay-4'); // 0.72 - 0.82
+
+      function updateOverlays(progress) {
+        if (progress >= 0.12 && progress <= 0.24) overlay1.classList.add('active');
+        else overlay1.classList.remove('active');
+
+        if (progress >= 0.34 && progress <= 0.44) overlay2.classList.add('active');
+        else overlay2.classList.remove('active');
+
+        if (progress >= 0.54 && progress <= 0.66) overlay3.classList.add('active');
+        else overlay3.classList.remove('active');
+
+        if (progress >= 0.72 && progress <= 0.82) overlay4.classList.add('active');
+        else overlay4.classList.remove('active');
+
+        if (progress > 0.08) {
+          heroScrollCue.style.opacity = '0';
+        } else {
+          heroScrollCue.style.opacity = '1';
+        }
+      }
+
+      // Smooth Render Loop
+      function renderLoop() {
+        if (isHeroActive) {
+          if (currentFrameIndex !== targetFrameIndex) {
+            currentFrameIndex = targetFrameIndex;
+            drawFrame(currentFrameIndex);
+          }
+        }
+        requestAnimationFrame(renderLoop);
+      }
+      requestAnimationFrame(renderLoop);
+
+      function onScrollUpdate() {
+        const rect = heroTrack.getBoundingClientRect();
+        const totalDist = heroTrack.offsetHeight - window.innerHeight;
+        let progress = 0;
+
+        if (totalDist > 0) {
+          progress = Math.min(1, Math.max(0, -rect.top / totalDist));
+        }
+
+        isHeroActive = (rect.bottom > 0 && rect.top < window.innerHeight);
+
+        scrollDirection = progress >= lastScrollProgress ? 1 : -1;
+        lastScrollProgress = progress;
+
+        targetFrameIndex = 1 + Math.round(progress * (TOTAL_FRAMES - 1));
+        if (frames.has(targetFrameIndex)) {
+          currentFrameIndex = targetFrameIndex;
+          drawFrame(currentFrameIndex);
+        }
+        updateRollingCache(targetFrameIndex, scrollDirection);
+        updateOverlays(progress);
+
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const totalPageProgress = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+        scrollProgressBar.style.height = `${Math.min(100, Math.max(0, totalPageProgress))}%`;
+      }
+
+      window.addEventListener('scroll', onScrollUpdate, { passive: true });
+
+      // Initial Preload 40 Frames
+      let loadedInitial = 0;
+      for (let i = 1; i <= INITIAL_PRELOAD_COUNT; i++) {
+        loadFrame(i).then(() => {
+          loadedInitial++;
+          loaderBar.style.width = `${(loadedInitial / INITIAL_PRELOAD_COUNT) * 100}%`;
+          if (loadedInitial === 1) {
+            resizeCanvas();
+          }
+          if (loadedInitial >= INITIAL_PRELOAD_COUNT) {
+            setTimeout(() => {
+              loader.classList.add('hidden');
+              resizeCanvas();
+              onScrollUpdate();
+            }, 250);
+          }
+        });
+      }
+
+      // --- 3. SECTION 2: STICKY PRODUCT EXPLAINER ---
+      const stickyProductImg = document.getElementById('stickyProductImg');
+      const explainerPanels = document.querySelectorAll('.explainer-panel');
+
+      const explainerObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const newSrc = entry.target.getAttribute('data-img');
+            if (newSrc && stickyProductImg.getAttribute('src') !== newSrc) {
+              stickyProductImg.style.opacity = '0';
+              stickyProductImg.style.transform = 'scale(0.95)';
+              setTimeout(() => {
+                stickyProductImg.src = newSrc;
+                stickyProductImg.style.opacity = '1';
+                stickyProductImg.style.transform = 'scale(1)';
+              }, 200);
+            }
+          }
+        });
+      }, {
+        threshold: 0.52
+      });
+
+      explainerPanels.forEach(panel => explainerObserver.observe(panel));
+
+      // --- 4. SECTION 3: AUTOMATIC CONTINUOUS BOTTLE CAROUSEL WITH INTERACTION HIGHLIGHT ---
+      const viewport = document.getElementById('collectionViewport');
+      const track = document.getElementById('collectionTrack');
+      const cards = track.querySelectorAll('.collection-bottle-card');
+      
+      const BASE_SPEED = 0.95; // Moderate, elegant speed scaled to the refined card size
+      let targetSpeed = BASE_SPEED;
+      let currentSpeed = BASE_SPEED;
+      let currentX = 0;
+      let isInteracting = false;
+      let isDragging = false;
+      let dragStartX = 0;
+      let dragStartCurrentX = 0;
+      let dragMoved = false;
+      let resumeTimer = null;
+
+      // Active Bottle Highlighting
+      function setActiveBottle(card) {
+        cards.forEach(c => c.classList.remove('active'));
+        if (card) {
+          card.classList.add('active');
+          track.classList.add('has-active');
+        } else {
+          track.classList.remove('has-active');
+        }
+      }
+
+      // Card Click & Tap Interaction
+      cards.forEach((card) => {
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('.btn-gold')) return;
+          if (dragMoved) return;
+
+          if (card.classList.contains('active')) {
+            setActiveBottle(null);
+            targetSpeed = BASE_SPEED;
+          } else {
+            setActiveBottle(card);
+            targetSpeed = 0; // Pause while user inspects chosen bottle
+            clearTimeout(resumeTimer);
+            resumeTimer = setTimeout(() => {
+              if (!isInteracting) targetSpeed = BASE_SPEED;
+            }, 3200);
+          }
+        });
+
+        card.addEventListener('mouseenter', () => {
+          track.classList.add('has-active');
+          targetSpeed = 0;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          const anyActive = track.querySelector('.collection-bottle-card.active');
+          if (!anyActive) {
+            track.classList.remove('has-active');
+          }
+          if (!isInteracting && !anyActive) {
+            targetSpeed = BASE_SPEED;
+          }
+        });
+      });
+
+      // Calculate width of one single set of 3 cards to loop infinitely with zero jump
+      function getSingleSetWidth() {
+        if (cards.length >= 4) {
+          const card1 = cards[0];
+          const card4 = cards[3]; // First card of second set
+          return card4.offsetLeft - card1.offsetLeft;
+        }
+        return 0;
+      }
+
+      // Smooth Frame Animation Loop with velocity easing
+      function carouselLoop() {
+        const setWidth = getSingleSetWidth();
+        
+        // Smoothly interpolate currentSpeed towards targetSpeed (natural deceleration/acceleration)
+        currentSpeed += (targetSpeed - currentSpeed) * 0.08;
+
+        if (setWidth > 0 && !isDragging) {
+          if (Math.abs(currentSpeed) > 0.005) {
+            currentX -= currentSpeed;
+          }
+          // Seamless wraparound
+          if (currentX <= -setWidth) {
+            currentX += setWidth;
+          } else if (currentX > 0) {
+            currentX -= setWidth;
+          }
+          track.style.transform = `translate3d(${currentX}px, 0, 0)`;
+        }
+        requestAnimationFrame(carouselLoop);
+      }
+      requestAnimationFrame(carouselLoop);
+
+      // Mouse drag support
+      viewport.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        isInteracting = true;
+        targetSpeed = 0;
+        dragMoved = false;
+        dragStartX = e.clientX;
+        dragStartCurrentX = currentX;
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const diffX = e.clientX - dragStartX;
+        if (Math.abs(diffX) > 4) dragMoved = true;
+        currentX = dragStartCurrentX + diffX;
+        const setWidth = getSingleSetWidth();
+        if (setWidth > 0) {
+          if (currentX <= -setWidth) currentX += setWidth;
+          if (currentX > 0) currentX -= setWidth;
+        }
+        track.style.transform = `translate3d(${currentX}px, 0, 0)`;
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (isDragging) {
+          isDragging = false;
+          isInteracting = false;
+          clearTimeout(resumeTimer);
+          resumeTimer = setTimeout(() => {
+            targetSpeed = BASE_SPEED;
+          }, 450);
+        }
+      });
+
+      // Mobile / Tablet Touch Swipe Support
+      viewport.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        isInteracting = true;
+        targetSpeed = 0;
+        dragMoved = false;
+        dragStartX = e.touches[0].clientX;
+        dragStartCurrentX = currentX;
+      }, { passive: true });
+
+      viewport.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const diffX = e.touches[0].clientX - dragStartX;
+        if (Math.abs(diffX) > 4) dragMoved = true;
+        currentX = dragStartCurrentX + diffX;
+        const setWidth = getSingleSetWidth();
+        if (setWidth > 0) {
+          if (currentX <= -setWidth) currentX += setWidth;
+          if (currentX > 0) currentX -= setWidth;
+        }
+        track.style.transform = `translate3d(${currentX}px, 0, 0)`;
+      }, { passive: true });
+
+      viewport.addEventListener('touchend', () => {
+        if (isDragging) {
+          isDragging = false;
+          isInteracting = false;
+          clearTimeout(resumeTimer);
+          resumeTimer = setTimeout(() => {
+            targetSpeed = BASE_SPEED;
+          }, 600);
+        }
+      });
+
+      // --- 5. PARALLAX STATEMENT & REVERSE COLUMNS ---
+      gsap.to('#parallaxBg', {
+        yPercent: 16,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#parallax-statement',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.25
+        }
+      });
+
+      gsap.to('.rev-col-1', {
+        yPercent: -12,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#reverse-columns',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.25
+        }
+      });
+      gsap.to('.rev-col-2', {
+        yPercent: 12,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#reverse-columns',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.25
+        }
+      });
+      gsap.to('.rev-col-3', {
+        yPercent: -12,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#reverse-columns',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.25
+        }
+      });
+
+      // Refresh ScrollTrigger
+      window.addEventListener('load', () => {
+        ScrollTrigger.refresh();
+      });
+      setTimeout(() => ScrollTrigger.refresh(), 400);
+
+    })();
+  </script>
+</body>
+</html>
