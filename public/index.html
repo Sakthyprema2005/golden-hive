@@ -1598,7 +1598,9 @@
     <div class="cards-stack-container">
       <!-- Card 01: DRIZZLE -->
       <div class="ritual-card" style="z-index: 10;">
-        <video class="card-video-bg" autoplay muted loop playsinline src="videos/card-drizzle.mp4?v=goldenhive22"></video>
+        <video class="card-video-bg" autoplay muted loop playsinline preload="auto" poster="images/lifestyle/lifestyle-dipper-drizzle.png?v=goldenhive2">
+          <source src="videos/card-drizzle.mp4" type="video/mp4">
+        </video>
         <div class="card-dark-gradient"></div>
         <div class="card-content">
           <div class="card-num">01</div>
@@ -1804,6 +1806,30 @@
           siteNav.classList.remove('scrolled');
         }
       }, { passive: true });
+
+      // Ritual Card Videos Autoplay Assurance
+      const ritualCards = document.querySelectorAll('.ritual-card');
+      ritualCards.forEach(card => {
+        const vid = card.querySelector('video');
+        if (vid) {
+          vid.muted = true;
+          vid.playsInline = true;
+        }
+      });
+      if ('IntersectionObserver' in window) {
+        const cardObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            const vid = entry.target.querySelector('video');
+            if (vid && entry.isIntersecting) {
+              const playPromise = vid.play();
+              if (playPromise && typeof playPromise.catch === 'function') {
+                playPromise.catch(() => {});
+              }
+            }
+          });
+        }, { threshold: 0.1 });
+        ritualCards.forEach(card => cardObserver.observe(card));
+      }
 
       // --- 2. HERO CANVAS SEQUENCE & ROLLING CACHE ENGINE ---
       const TOTAL_FRAMES = 581;
